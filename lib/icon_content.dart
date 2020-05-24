@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'constants.dart';
 class MaleFemaleCard extends StatelessWidget {
   MaleFemaleCard({this.icon, this.label});
   final IconData icon;
@@ -17,10 +17,7 @@ class MaleFemaleCard extends StatelessWidget {
         SizedBox(
           height: 15.0,
         ),
-        Text(label, style: TextStyle(
-            fontSize: 18.0,
-            color: Color(0xFF8D8E98)
-        ),),
+        Text(label, style: kLabelTextStyle ),
       ],
     );
   }
