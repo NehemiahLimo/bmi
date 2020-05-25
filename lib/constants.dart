@@ -14,3 +14,27 @@ const kSlider = TextStyle(
     fontSize: 50.0,
     fontWeight: FontWeight.w900
 );
+
+const kLargeText = TextStyle(
+  fontSize: 25.0,
+  fontWeight: FontWeight.bold
+);
+
+const kTitleStyle = TextStyle(
+  fontSize: 50.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kResultTextStyle= TextStyle(
+  color: Color(0xFF24D876),
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold,
+);
+const kBMITextStyle= TextStyle(
+  fontSize: 100.0,
+  fontWeight: FontWeight.bold,
+);
+const kBodyStyle= TextStyle(
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold,
+);
