@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'icon_content.dart';
-import 'reusable_content.dart';
-import 'constants.dart';
+import '../components/icon_content.dart';
+import '../components/reusable_content.dart';
+import '../constants.dart';
 import 'results.dart';
+import '../components/round_icon.dart';
+import '../components/bottom_button.dart';
+import 'package:bmi/calc_brain.dart';
 
 enum Gender { male, female }
 
@@ -132,29 +135,26 @@ class _InputPageState extends State<InputPage> {
                           style: kSlider,
                         ),
                         Row(
-
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             RoundIconButton(
-
                               icon: FontAwesomeIcons.minus,
-                              onPressed: (){
+                              onPressed: () {
                                 setState(() {
                                   weight--;
-
                                 });
                               },
                             ),
-                            SizedBox(width: 15.0,),
+                            SizedBox(
+                              width: 15.0,
+                            ),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
-                                onPressed: (){
-                                  setState(() {
-                                    weight++;
-
-                                  });
-                                }
-                              ,
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
                             ),
                           ],
                         ),
@@ -177,29 +177,26 @@ class _InputPageState extends State<InputPage> {
                           style: kSlider,
                         ),
                         Row(
-
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             RoundIconButton(
-
                               icon: FontAwesomeIcons.minus,
-                              onPressed: (){
+                              onPressed: () {
                                 setState(() {
                                   age--;
-
                                 });
                               },
                             ),
-                            SizedBox(width: 10.0,),
+                            SizedBox(
+                              width: 10.0,
+                            ),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
-                              onPressed: (){
+                              onPressed: () {
                                 setState(() {
                                   age++;
-
                                 });
-                              }
-                              ,
+                              },
                             ),
                           ],
                         ),
@@ -210,18 +207,24 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) =>Results() ),);
+          BottomButton(
+            buttonTitle: 'CALCULATE',
+            onTap: () {
+
+              CalcBrain calc = CalcBrain(height: height, weight: weight);
+
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Results(
+                    bmi_results: calc.calculateBMI(),
+                    resultText: calc.getResult(),
+                    interpretation: calc.getInterpretation(),
+                  ),
+                ),
+              );
             },
-            child: Container(
-              child: Center(child: Text('Calculate', style: kLargeText,),),
-              color: kBottomColor,
-              margin: EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-              padding: EdgeInsets.only(bottom: 20.0),
-            ),
           )
         ],
       ),
@@ -229,23 +232,6 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({this.icon, this.onPressed});
-  final IconData icon;
-  final Function onPressed;
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onPressed,
 
-      elevation: 6.0,
-      constraints: BoxConstraints.tightFor(
-        height: 56.0,
-        width: 56.0,
-      ),
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
-    );
-  }
-}
+
+
